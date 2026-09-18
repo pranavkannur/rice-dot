@@ -1,0 +1,31 @@
+[config]
+reload_apps = true
+set_wallpaper = false
+
+[templates.kitty]
+input_path = '~/.config/matugen/templates/kitty.j2'
+output_path = '~/.config/kitty/colors.conf'
+
+[templates.waybar]
+input_path = '~/.config/matugen/templates/waybar.j2'
+output_path = '~/.config/waybar/colors.css'
+
+[templates.swaync]
+input_path = '~/.config/matugen/templates/swaync.j2'
+output_path = '~/.config/swaync/colors.css'
+
+[templates.hyprland]
+input_path = '~/.config/matugen/templates/hyprland.j2'
+output_path = '~/.config/hypr/colors.conf'
+
+[templates.gtk3]
+input_path = '~/.config/matugen/templates/gtk.j2'
+output_path = '~/.config/gtk-3.0/gtk.css'
+
+[templates.gtk4]
+input_path = '~/.config/matugen/templates/gtk.j2'
+output_path = '~/.config/gtk-4.0/gtk.css'
+
+[templates.rofi]
+input_path = '~/.config/matugen/templates/rofi.j2'
+output_path = '~/.config/rofi/colors.rasi'

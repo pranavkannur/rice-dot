@@ -1,0 +1,111 @@
+@define-color bg-primary rgba(30, 30, 46, 0.85);
+@define-color bg-secondary rgba(49, 50, 68, 0.9);
+@define-color text-primary #cdd6f4;
+@define-color text-secondary #a6adc8;
+@define-color accent #cba6f7;
+@define-color accent-alt #89b4fa;
+@define-color red #f38ba8;
+@define-color green #a6e3a1;
+@define-color yellow #f9e2af;
+
+* {
+    font-family: "JetBrainsMono Nerd Font", sans-serif;
+    font-size: 10pt;
+}
+
+window#waybar {
+    background: transparent;
+    color: @text-primary;
+}
+
+.modules-left, .modules-center, .modules-right {
+    background: @bg-primary;
+    border-radius: 16px;
+    padding: 2px 10px;
+    margin: 4px;
+}
+
+#workspaces button {
+    color: @text-secondary;
+    border-radius: 12px;
+    padding: 2px 8px;
+    margin: 0 2px;
+    min-width: 24px;
+    transition: all 200ms ease;
+    border: none;
+    box-shadow: none;
+}
+
+#workspaces button.active {
+    background: @accent;
+    color: @bg-primary;
+    font-weight: bold;
+}
+
+#workspaces button:hover {
+    background: @bg-secondary;
+    text-shadow: none;
+}
+
+#clock {
+    color: @text-primary;
+    font-weight: bold;
+}
+
+#pulseaudio {
+    color: @accent-alt;
+}
+
+#pulseaudio.muted {
+    color: @red;
+}
+
+#network {
+    color: @green;
+}
+
+#network.disconnected {
+    color: @red;
+}
+
+#battery {
+    color: @green;
+}
+
+#battery.warning {
+    color: @yellow;
+}
+
+#battery.critical {
+    color: @red;
+    animation: blink 1s linear infinite;
+}
+
+@keyframes blink {
+    to {
+        color: @text-primary;
+    }
+}
+
+#tray {
+    color: @text-secondary;
+}
+
+#custom-notification {
+    color: @accent;
+}
+
+#clock, #pulseaudio, #network, #battery, #tray, #custom-notification {
+    padding: 0 8px;
+}
+
+tooltip {
+    background: @bg-primary;
+    border: 1px solid @accent;
+    border-radius: 10px;
+    padding: 8px;
+}
+
+tooltip label {
+    color: @text-primary;
+}

@@ -1,0 +1,17 @@
+# ===== Dynamic Theming =====
+matugen-bin
+
+# ===== App Theming =====
+spicetify-cli
+
+# ===== Cursor Theme =====
+bibata-cursor-theme-bin
+
+# ===== Clipboard Manager =====
+cliphist
+
+# ===== Color Picker =====
+hyprpicker
+
+# ===== Communication =====
+vesktop-bin

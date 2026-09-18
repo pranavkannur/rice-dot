@@ -1,0 +1,31 @@
+# System & editor files
+.DS_Store
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+*.bak
+
+# Cache & temp
+.cache/
+__pycache__/
+*.pyc
+node_modules/
+
+# Secrets & tokens
+.env
+*.secret
+*.key
+*.pem
+
+# Build artifacts
+*.o
+*.so
+*.a
+
+# Local overrides (user can create these but they won't be tracked)
+configs/hypr/monitors.local.conf
+
+# Backup directories
+*.config_backup_*/

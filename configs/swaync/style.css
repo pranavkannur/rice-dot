@@ -1,0 +1,61 @@
+* {
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 10pt;
+}
+
+.control-center {
+    background: rgba(30, 30, 46, 0.92);
+    border-radius: 16px;
+    border: 1px solid rgba(203, 166, 247, 0.2);
+    padding: 10px;
+}
+
+.notification-row {
+    margin: 4px 0;
+    border-radius: 12px;
+}
+
+.notification {
+    background: rgba(49, 50, 68, 0.8);
+    border-radius: 12px;
+    padding: 10px;
+    border: 1px solid rgba(69, 71, 90, 0.5);
+}
+
+.notification-content {
+    padding: 6px;
+}
+
+.close-button {
+    background: rgba(243, 139, 168, 0.2);
+    border-radius: 50%;
+    min-width: 24px;
+    min-height: 24px;
+}
+
+.widget-title {
+    color: #cdd6f4;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.widget-dnd {
+    color: #cdd6f4;
+    font-size: 12px;
+}
+
+/* DND toggle switch styled with accent colors */
+switch {
+    background: rgba(69, 71, 90, 0.5);
+    border-radius: 12px;
+}
+switch:checked {
+    background: #cba6f7;
+}
+slider {
+    background: #cdd6f4;
+    border-radius: 50%;
+}
+switch:checked slider {
+    background: #1e1e2e;
+}
