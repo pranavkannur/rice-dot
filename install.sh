@@ -59,28 +59,32 @@ if ! grep -q "zsh$" <<< "$SHELL"; then
 fi
 
 # Step 8: Initialize wallpaper
-if ! pgrep -x swww-daemon >/dev/null; then
-    info "Starting swww-daemon..."
-    swww-daemon &
-    sleep 1
-fi
+export PATH="$HOME/.local/bin:$PATH"
 
 WALLPAPER_DIR="assets/wallpapers"
 if [[ -d "$WALLPAPER_DIR" ]]; then
-    WALLPAPER=$(find "$WALLPAPER_DIR" -type f | head -n 1)
+    # Find real wallpaper files (exclude .keep)
+    WALLPAPER=$(find "$WALLPAPER_DIR" -maxdepth 1 -type f \( -iname "*.jpg" -o -iname "*.png" -o -iname "*.webp" \) | head -n 1)
     if [[ -n "$WALLPAPER" ]]; then
-        info "Setting wallpaper to $WALLPAPER..."
-        swww img "$WALLPAPER"
+        if command -v swww-daemon &>/dev/null; then
+            if ! pgrep -x swww-daemon >/dev/null; then
+                info "Starting swww-daemon..."
+                swww-daemon 2>/dev/null &
+                sleep 1
+            fi
+            info "Setting wallpaper to $WALLPAPER..."
+            swww img "$WALLPAPER" 2>/dev/null || warn "Could not display wallpaper directly (display may not be Hyprland yet)."
+        fi
         
         # Step 9: Run matugen on current wallpaper
         if command -v matugen &> /dev/null; then
             info "Running matugen on wallpaper..."
-            matugen image "$WALLPAPER" || warn "Matugen failed to generate color scheme."
+            matugen image "$WALLPAPER" 2>/dev/null || warn "Matugen failed to generate color scheme."
         else
             warn "matugen not found, skipping color scheme generation."
         fi
     else
-        warn "No wallpapers found in $WALLPAPER_DIR."
+        info "No wallpapers placed in $WALLPAPER_DIR yet (add your favorite .jpg/.png images here)."
     fi
 fi
 
