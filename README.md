@@ -16,7 +16,7 @@ A centralized, reproducible Arch Linux dotfiles repository inspired by [Caelesti
 ## 📦 Quick Start
 
 ```bash
-git clone <your-repo-url> ~/rice_dot
+git clone https://github.com/pranavkannur/rice-dot.git
 cd ~/rice_dot
 ./install.sh
 ```
