@@ -49,14 +49,21 @@ if [[ -z "$WALLPAPER" || ! -f "$WALLPAPER" ]]; then
     exit 1
 fi
 
-# Ensure swww-daemon is running
-if ! pgrep -x swww-daemon &> /dev/null; then
-    swww-daemon &
+# Ensure wallpaper daemon (swww or awww) is running
+SWWW_BIN="swww"
+SWWW_DAEMON="swww-daemon"
+if ! command -v swww &>/dev/null && command -v awww &>/dev/null; then
+    SWWW_BIN="awww"
+    SWWW_DAEMON="awww-daemon"
+fi
+
+if ! pgrep -x "$SWWW_DAEMON" &> /dev/null && ! pgrep -x "swww-daemon" &> /dev/null && ! pgrep -x "awww-daemon" &> /dev/null; then
+    "$SWWW_DAEMON" &
     sleep 1
 fi
 
 # Set the wallpaper
-swww img "$WALLPAPER" --transition-type grow --transition-pos center --transition-duration 1.5 --transition-fps 60
+"$SWWW_BIN" img "$WALLPAPER" --transition-type grow --transition-pos center --transition-duration 1.5 --transition-fps 60
 
 # Save to cache
 echo "$WALLPAPER" > "$WALLPAPER_FILE"

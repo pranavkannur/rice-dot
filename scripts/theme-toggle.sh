@@ -29,8 +29,10 @@ echo "$NEW_MODE" > "$MODE_FILE"
 if [[ -f "$WALLPAPER_FILE" ]]; then
     WALLPAPER=$(cat "$WALLPAPER_FILE")
 else
-    # Fallback to swww query if available, parse first output
-    WALLPAPER=$(swww query 2>/dev/null | head -n 1 | awk -F 'image: ' '{print $2}')
+    # Fallback to swww/awww query if available, parse first output
+    SWWW_BIN="swww"
+    command -v swww &>/dev/null || SWWW_BIN="awww"
+    WALLPAPER=$("$SWWW_BIN" query 2>/dev/null | head -n 1 | awk -F 'image: ' '{print $2}')
 fi
 
 if [[ -n "$WALLPAPER" && -f "$WALLPAPER" ]]; then
