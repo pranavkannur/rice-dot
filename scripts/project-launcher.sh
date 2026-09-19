@@ -66,7 +66,9 @@ ACTION=$(printf "1. 💻 Code (VS Code)\n2. ⚡ Neovim (Terminal)\n3. 🖥️ Te
 
 case "$ACTION" in
     1*|"")
-        if command -v code &>/dev/null; then
+        if command -v codium &>/dev/null; then
+            codium "$SELECTED_PATH"
+        elif command -v code &>/dev/null; then
             code "$SELECTED_PATH"
         else
             kitty --directory "$SELECTED_PATH" nvim .

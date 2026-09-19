@@ -75,3 +75,7 @@ yazi
 # ===== System Utilities =====
 polkit-gnome
 gnome-keyring
+
+# ===== Communication & Media =====
+discord
+spotify-launcher
