@@ -29,6 +29,12 @@ The installer will:
 5. Set Zsh as default shell
 6. Initialize wallpaper and color scheme
 
+### 🛠️ Developer & Application Suite Setup
+To install your full developer stack (Docker, VS Code, MariaDB/MySQL, MongoDB, Node.js, Python, Postman, Ollama, Antigravity, VLC, Vesktop, Spotify):
+```bash
+./install-dev.sh
+```
+
 ## ⌨️ Keybindings
 
 ### Core
