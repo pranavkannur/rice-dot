@@ -76,7 +76,7 @@ fi
 
 # Run matugen
 if command -v matugen &> /dev/null; then
-    matugen image "$WALLPAPER" -m "$MODE"
+    matugen image "$WALLPAPER" -m "$MODE" --source-color-index 0
 fi
 
 # Reload Waybar

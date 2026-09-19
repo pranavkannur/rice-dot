@@ -38,7 +38,7 @@ fi
 if [[ -n "$WALLPAPER" && -f "$WALLPAPER" ]]; then
     # Run matugen if available
     if command -v matugen &> /dev/null; then
-        matugen image "$WALLPAPER" -m "$NEW_MODE"
+        matugen image "$WALLPAPER" -m "$NEW_MODE" --source-color-index 0
     fi
 fi
 

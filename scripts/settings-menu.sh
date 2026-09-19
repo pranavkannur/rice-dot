@@ -26,9 +26,10 @@ declare -a options=(
     "3. 🔲 Window Opacity"
     "4. 🌫 Blur Intensity"
     "5. ⚡ Animation Speed"
-    "6. 🔒 VPN Controls"
-    "7. 🌐 DNS Settings"
-    "8. 🔊 Audio Settings"
+    "6. 👥 Window Shadows"
+    "7. 🔒 VPN Controls"
+    "8. 🌐 DNS Settings"
+    "9. 🔊 Audio Settings"
 )
 
 choice=$(printf "%s\n" "${options[@]}" | rofi -dmenu -i -p "Settings")
@@ -91,18 +92,58 @@ case "$choice" in
     "5. ⚡ Animation Speed")
         anim_choice=$(printf "Fast\nBalanced\nSmooth\nOff\n" | rofi -dmenu -i -p "Animation Speed")
         case "$anim_choice" in
-            "Fast") speed=2 ;;
-            "Balanced") speed=4 ;;
-            "Smooth") speed=7 ;;
-            "Off") speed=0 ;;
+            "Fast")
+                update_hypr_var "anim_enabled" "true"
+                update_hypr_var "anim_speed" "2"
+                hyprctl keyword animations:enabled true
+                hyprctl keyword animation "windows,1,2,myBezier"
+                hyprctl keyword animation "windowsOut,1,2,smoothOut,popin 80%"
+                hyprctl keyword animation "fade,1,2,smoothIn"
+                hyprctl keyword animation "workspaces,1,2,default"
+                ;;
+            "Balanced")
+                update_hypr_var "anim_enabled" "true"
+                update_hypr_var "anim_speed" "4"
+                hyprctl keyword animations:enabled true
+                hyprctl keyword animation "windows,1,4,myBezier"
+                hyprctl keyword animation "windowsOut,1,4,smoothOut,popin 80%"
+                hyprctl keyword animation "fade,1,4,smoothIn"
+                hyprctl keyword animation "workspaces,1,4,default"
+                ;;
+            "Smooth")
+                update_hypr_var "anim_enabled" "true"
+                update_hypr_var "anim_speed" "7"
+                hyprctl keyword animations:enabled true
+                hyprctl keyword animation "windows,1,7,myBezier"
+                hyprctl keyword animation "windowsOut,1,7,smoothOut,popin 80%"
+                hyprctl keyword animation "fade,1,7,smoothIn"
+                hyprctl keyword animation "workspaces,1,7,default"
+                ;;
+            "Off")
+                update_hypr_var "anim_enabled" "false"
+                update_hypr_var "anim_speed" "0"
+                hyprctl keyword animations:enabled false
+                ;;
             *) exit 0 ;;
         esac
-        
-        update_hypr_var "anim_speed" "$speed"
-        hyprctl reload
         ;;
         
-    "6. 🔒 VPN Controls")
+    "6. 👥 Window Shadows")
+        shadow_choice=$(printf "Enable Shadows\nDisable Shadows\n" | rofi -dmenu -i -p "Shadows")
+        case "$shadow_choice" in
+            "Enable Shadows")
+                update_hypr_var "shadow_enabled" "true"
+                hyprctl keyword decoration:shadow:enabled true
+                ;;
+            "Disable Shadows")
+                update_hypr_var "shadow_enabled" "false"
+                hyprctl keyword decoration:shadow:enabled false
+                ;;
+            *) exit 0 ;;
+        esac
+        ;;
+        
+    "7. 🔒 VPN Controls")
         vpn_list=$(nmcli -t -f NAME,TYPE,STATE connection show | awk -F: '$2=="vpn" || $2=="wireguard" {print $1 " (" $3 ")"}')
         if [ -z "$vpn_list" ]; then
             rofi -e "No VPN configured"
@@ -122,7 +163,7 @@ case "$choice" in
         fi
         ;;
         
-    "7. 🌐 DNS Settings")
+    "8. 🌐 DNS Settings")
         dns_choice=$(printf "Cloudflare\nAdGuard\nQuad9\nGoogle\nAutomatic\n" | rofi -dmenu -i -p "DNS Settings")
         if [ -n "$dns_choice" ]; then
             active_conn=$(nmcli -t -f NAME,DEVICE connection show --active | head -n 1 | cut -d':' -f1)
@@ -145,7 +186,7 @@ case "$choice" in
         fi
         ;;
         
-    "8. 🔊 Audio Settings")
+    "9. 🔊 Audio Settings")
         pavucontrol &
         ;;
 esac

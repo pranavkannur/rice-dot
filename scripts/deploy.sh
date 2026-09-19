@@ -62,3 +62,26 @@ for MAP in "${CONFIG_MAP[@]}"; do
         echo -e "\e[32m[LINK]\e[0m Linked $SRC_ABS -> $TARGET"
     fi
 done
+
+# Link user scripts into ~/.local/bin
+if [[ $DRY_RUN -eq 0 ]]; then
+    mkdir -p "$HOME/.local/bin"
+    for script in "$DOTFILES_DIR/scripts"/*.sh; do
+        if [[ -f "$script" ]]; then
+            chmod +x "$script"
+            sname=$(basename "$script")
+            base="${sname%.sh}"
+            ln -sfn "$script" "$HOME/.local/bin/$sname"
+            ln -sfn "$script" "$HOME/.local/bin/$base"
+        fi
+    done
+    # Alias compatibility symlinks
+    ln -sfn "$DOTFILES_DIR/scripts/powermenu.sh" "$HOME/.local/bin/power-menu.sh"
+    
+    # Ensure swww aliases to awww if awww is installed
+    if command -v awww &>/dev/null && ! command -v swww &>/dev/null; then
+        ln -sfn "$(which awww)" "$HOME/.local/bin/swww"
+        ln -sfn "$(which awww-daemon)" "$HOME/.local/bin/swww-daemon"
+    fi
+fi
+

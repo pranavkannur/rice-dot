@@ -55,6 +55,7 @@ noto-fonts-emoji
 
 # ===== Theming & Appearance =====
 nwg-look
+papirus-icon-theme
 
 # ===== Git & Dev Tools =====
 git

@@ -1,11 +1,20 @@
 configuration {
     modi: "drun,run,filebrowser";
     show-icons: true;
-    icon-theme: "Papirus-Dark";
+    icon-theme: "breeze-dark";
     display-drun: "";
     drun-display-format: "{name}";
     font: "JetBrainsMono Nerd Font 10";
     terminal: "kitty";
+}
+
+@theme "/dev/null"
+
+@import "colors.rasi"
+
+* {
+    background-color: transparent;
+    text-color: @foreground;
 }
 
 window {
@@ -14,35 +23,34 @@ window {
     anchor: center;
     width: 500px;
     border-radius: 16px;
-    background-color: rgba(30, 30, 46, 0.9);
-    border: 1px solid rgba(203, 166, 247, 0.3);
+    background-color: @background;
+    border: 1px;
+    border-color: @border-col;
 }
 
 mainbox {
     children: [ inputbar, listview ];
     spacing: 10px;
     padding: 20px;
-    background-color: transparent;
 }
 
 inputbar {
     children: [ prompt, entry ];
-    background-color: rgba(49, 50, 68, 0.8);
+    background-color: @background-alt;
     border-radius: 12px;
     padding: 10px 14px;
 }
 
 prompt {
-    text-color: #cba6f7;
-    background-color: transparent;
+    text-color: @active;
     margin: 0px 8px 0px 0px;
 }
 
 entry {
     placeholder: "Search...";
-    text-color: #cdd6f4;
+    text-color: @foreground;
     placeholder-color: #6c7086;
-    background-color: transparent;
+    cursor: text;
 }
 
 listview {
@@ -51,29 +59,33 @@ listview {
     spacing: 4px;
     scrollbar: false;
     fixed-height: false;
-    background-color: transparent;
 }
 
 element {
     padding: 8px 12px;
     border-radius: 10px;
     spacing: 10px;
-    background-color: transparent;
+    cursor: pointer;
 }
 
-element selected {
-    background-color: rgba(203, 166, 247, 0.2);
-    text-color: #cba6f7;
+element normal.normal {
+    background-color: transparent;
+    text-color: @foreground;
+}
+
+element selected.normal, element selected {
+    background-color: @selected;
+    text-color: @active;
 }
 
 element-icon {
     size: 22px;
-    background-color: transparent;
+    cursor: inherit;
 }
 
 element-text {
     font: "JetBrainsMono Nerd Font 10";
-    background-color: transparent;
     text-color: inherit;
+    cursor: inherit;
     vertical-align: 0.5;
 }

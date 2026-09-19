@@ -1,3 +1,6 @@
+@import "colors.css";
+
+/* Fallback definitions if colors.css is not yet loaded */
 @define-color bg-primary rgba(30, 30, 46, 0.85);
 @define-color bg-secondary rgba(49, 50, 68, 0.9);
 @define-color text-primary #cdd6f4;

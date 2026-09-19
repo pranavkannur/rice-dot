@@ -4,6 +4,13 @@ configuration {
     hover-select: true;
 }
 
+@theme "/dev/null"
+
+* {
+    background-color: transparent;
+    text-color: #cdd6f4;
+}
+
 window {
     transparency: "real";
     location: center;
@@ -11,7 +18,8 @@ window {
     width: 500px;
     border-radius: 16px;
     background-color: rgba(30, 30, 46, 0.95);
-    border: 1px solid rgba(203, 166, 247, 0.3);
+    border: 1px;
+    border-color: rgba(203, 166, 247, 0.3);
     padding: 20px;
 }
 

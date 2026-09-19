@@ -79,7 +79,7 @@ if [[ -d "$WALLPAPER_DIR" ]]; then
         # Step 9: Run matugen on current wallpaper
         if command -v matugen &> /dev/null; then
             info "Running matugen on wallpaper..."
-            matugen image "$WALLPAPER" 2>/dev/null || warn "Matugen failed to generate color scheme."
+            matugen image "$WALLPAPER" --source-color-index 0 2>/dev/null || warn "Matugen failed to generate color scheme."
         else
             warn "matugen not found, skipping color scheme generation."
         fi
