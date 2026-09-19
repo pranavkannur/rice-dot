@@ -62,6 +62,18 @@ if pgrep -x kitty &> /dev/null; then
     kitty @ --to unix:/tmp/kitty-socket set-colors --all ~/.config/kitty/colors.conf || true
 fi
 
+# Sync VS Code theme
+VSCODE_CONFIG="$HOME/.config/Code/User/settings.json"
+if [[ -f "$VSCODE_CONFIG" ]]; then
+    if [[ "$NEW_MODE" == "dark" ]]; then
+        sed -i 's/"workbench.colorTheme": "[^"]*"/"workbench.colorTheme": "Catppuccin Mocha"/' "$VSCODE_CONFIG" 2>/dev/null || true
+        sed -i 's/"workbench.iconTheme": "[^"]*"/"workbench.iconTheme": "catppuccin-mocha"/' "$VSCODE_CONFIG" 2>/dev/null || true
+    else
+        sed -i 's/"workbench.colorTheme": "[^"]*"/"workbench.colorTheme": "Catppuccin Latte"/' "$VSCODE_CONFIG" 2>/dev/null || true
+        sed -i 's/"workbench.iconTheme": "[^"]*"/"workbench.iconTheme": "catppuccin-latte"/' "$VSCODE_CONFIG" 2>/dev/null || true
+    fi
+fi
+
 # Send notification
 if command -v notify-send &> /dev/null; then
     notify-send "Theme" "Switched to $NEW_MODE mode" -i preferences-desktop-theme

@@ -24,6 +24,7 @@ CONFIG_MAP=(
     "gtk-4.0:$HOME/.config/gtk-4.0"
     "starship.toml:$HOME/.config/starship.toml"
     "zsh/.zshrc:$HOME/.zshrc"
+    "git/.gitconfig:$HOME/.gitconfig"
 )
 
 BACKUP_DIR="$HOME/.config_backup_$(date +%Y%m%d_%H%M%S)"
